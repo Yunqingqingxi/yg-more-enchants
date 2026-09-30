@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "yg_enchants",
+	"version": "${version}",
+	"name": "yunxigames 更多附魔",
+	"description": "附魔突破系列：雷霆万钧/臭脚/碎裂/磁石/贪婪/负重与易碎诅咒/汲取/疾风/威压/蓝银撑杆跳（木棍专属：立杆后按住右键蓄力，蓝银草一路长高并顶碎挡路方块，松手把人撑上天），击杀升级，图书管理员交易重做。装上后随机掉落的武器工具会概率附带碎裂。",
+	"authors": [
+		"Yunqingqingxi"
+	],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.yunxigames.YunxiGamesEnchants"
+		]
+	},
+	"mixins": [
+		"yg-enchants.mixins.json"
+	],
+	"depends": {
+		"fabricloader": "~0.19.5",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
