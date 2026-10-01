@@ -1,6 +1,8 @@
 package com.yunxigames;
 
+import com.yunxigames.command.EnchantsCommand;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -23,6 +25,10 @@ public class YunxiGamesEnchants implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		// 游戏内命令：/yg enchants on|off|status（总开关只停玩法、不动各子开关）
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
+				EnchantsCommand.register(dispatcher));
+
 		// 附魔效果（雷霆 / 臭脚 / 碎裂等）注册
 		EnchantmentEffects.register();
 		EnchantmentLevelUps.register();

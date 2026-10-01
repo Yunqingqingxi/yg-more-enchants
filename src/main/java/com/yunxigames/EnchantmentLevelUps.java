@@ -51,7 +51,8 @@ public final class EnchantmentLevelUps {
 
 	private static void onDeath(LivingEntity entity, DamageSource source) {
 		EnchantsConfig config = EnchantsConfig.get();
-		if (!config.enableEnchantmentBreakthrough
+		if (!config.enchantsEnabled
+				|| !config.enableEnchantmentBreakthrough
 				|| !config.enableEnchantLevelUp
 				|| config.killEnchantLevelUpChance <= 0.0D) {
 			return;

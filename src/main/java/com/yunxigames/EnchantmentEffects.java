@@ -69,7 +69,7 @@ public final class EnchantmentEffects {
 		// 攻击：持碎裂武器打中目标时触发；被打者穿易碎诅咒时按概率碎一件护甲；汲取武器吸血
 		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, damage, newHealth, blocked) -> {
 			EnchantsConfig config = EnchantsConfig.get();
-			if (!config.enableEnchantmentBreakthrough) {
+			if (!config.enchantsEnabled || !config.enableEnchantmentBreakthrough) {
 				return;
 			}
 
@@ -100,7 +100,7 @@ public final class EnchantmentEffects {
 		// 挖掘：持碎裂工具破坏方块时触发；持贪婪工具时按概率额外随机掉一件
 		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
 			EnchantsConfig config = EnchantsConfig.get();
-			if (!config.enableEnchantmentBreakthrough) {
+			if (!config.enchantsEnabled || !config.enableEnchantmentBreakthrough) {
 				return;
 			}
 

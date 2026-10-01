@@ -234,7 +234,7 @@ public final class PoleVault {
 		}
 
 		EnchantsConfig config = EnchantsConfig.get();
-		if (!config.enableEnchantmentBreakthrough || !config.enablePoleVault) {
+		if (!config.enchantsEnabled || !config.enableEnchantmentBreakthrough || !config.enablePoleVault) {
 			return InteractionResult.PASS;
 		}
 
@@ -318,7 +318,7 @@ public final class PoleVault {
 	/** 每刻推进：蓄力生长 + 倒杆积分 + 落地缓冲。由入口挂在 END_SERVER_TICK 上。 */
 	static void tick(MinecraftServer server) {
 		EnchantsConfig config = EnchantsConfig.get();
-		if (!config.enableEnchantmentBreakthrough || !config.enablePoleVault) {
+		if (!config.enchantsEnabled || !config.enableEnchantmentBreakthrough || !config.enablePoleVault) {
 			// 玩法被关掉：内存里的杆与蓄力直接丢掉（它们本来就只是粒子，不留世界状态）
 			POLES.clear();
 			CHARGES.clear();

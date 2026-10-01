@@ -76,4 +76,20 @@ class EnchantsRegressionTest {
 		assertEquals(1.0D, cfg.poleVaultHorizontalChargeSeconds, "缺项水平蓄力窗口补回 1 秒");
 		assertEquals(0.003D, cfg.poleVaultToppleNudge, 1.0E-12D, "缺项倒杆冲量补回代码默认");
 	}
+
+	@Test
+	void missingMasterSwitchFallsBackToTrueAndExplicitFalseIsKept() throws Exception {
+		// v1.4.0 新增玩法总开关 enchantsEnabled：老配置文件没写这一项，必须补回默认 true
+		//（否则升级后整个附魔玩法静默关闭 —— Gson 缺项坑的又一个变种）；
+		// 而玩家显式写 false 的则必须保留，不许被补回逻辑偷偷打开。
+		Files.writeString(configDir.resolve(EnchantsConfig.FILE_NAME),
+				"{\"enableMagnet\": true}");
+		assertTrue(EnchantsConfig.load().enchantsEnabled,
+				"旧配置缺 enchantsEnabled 必须补回默认 true（玩法不能静默消失）");
+
+		Files.writeString(configDir.resolve(EnchantsConfig.FILE_NAME),
+				"{\"enchantsEnabled\": false}");
+		assertFalse(EnchantsConfig.load().enchantsEnabled,
+				"玩家明确写 false 的总开关必须保持 false");
+	}
 }

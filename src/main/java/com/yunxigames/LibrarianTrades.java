@@ -109,7 +109,8 @@ public final class LibrarianTrades {
 
 	/** 供 mixin 调用的统一入口（带配置开关）。 */
 	public static void onOpenTrading(Villager villager) {
-		if (!EnchantsConfig.get().enableLibrarianRefresh
+		if (!EnchantsConfig.get().enchantsEnabled
+				|| !EnchantsConfig.get().enableLibrarianRefresh
 				|| !(villager.level() instanceof ServerLevel level)) {
 			return;
 		}
